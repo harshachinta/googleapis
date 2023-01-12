@@ -14662,6 +14662,17 @@
               ]
             },
             {
+              "shortName": "ReadTensorboardUsage",
+              "fullName": "google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardUsage",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{tensorboard=projects/*/locations/*/tensorboards/*}:readUsage"
+                }
+              ]
+            },
+            {
               "shortName": "UpdateTensorboard",
               "fullName": "google.cloud.aiplatform.v1.TensorboardService.UpdateTensorboard",
               "mode": "UNARY",
@@ -17077,6 +17088,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1beta1/{tensorboard_time_series=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}:read"
+                }
+              ]
+            },
+            {
+              "shortName": "ReadTensorboardUsage",
+              "fullName": "google.cloud.aiplatform.v1beta1.TensorboardService.ReadTensorboardUsage",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta1/{tensorboard=projects/*/locations/*/tensorboards/*}:readUsage"
                 }
               ]
             },
@@ -41368,7 +41390,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/dialogflow/cx/v3beta1;cx": 21
+            "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb;cxpb": 21
           }
         },
         "java_multiple_files": {
@@ -78586,6 +78608,17 @@
               ]
             },
             {
+              "shortName": "GetReplicationCycle",
+              "fullName": "google.cloud.vmmigration.v1.VmMigration.GetReplicationCycle",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/replicationCycles/*}"
+                }
+              ]
+            },
+            {
               "shortName": "GetSource",
               "fullName": "google.cloud.vmmigration.v1.VmMigration.GetSource",
               "mode": "UNARY",
@@ -78670,6 +78703,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{parent=projects/*/locations/*/sources/*}/migratingVms"
+                }
+              ]
+            },
+            {
+              "shortName": "ListReplicationCycles",
+              "fullName": "google.cloud.vmmigration.v1.VmMigration.ListReplicationCycles",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/replicationCycles"
                 }
               ]
             },
@@ -78810,7 +78854,10 @@
       ],
       "configFile": "vmmigration_v1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.vmmigration.v1.VmMigration"
+        "google.cloud.location.Locations",
+        "google.cloud.vmmigration.v1.VmMigration",
+        "google.iam.v1.IAMPolicy",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "vmmigration.googleapis.com"
     },
@@ -80487,6 +80534,274 @@
         "google.cloud.workflows.v1beta.Workflows"
       ],
       "nameInServiceConfig": "workflows.googleapis.com"
+    },
+    {
+      "id": "google.cloud.workstations.v1beta",
+      "directory": "google/cloud/workstations/v1beta",
+      "version": "v1beta",
+      "majorVersion": "v1",
+      "hostName": "workstations.googleapis.com",
+      "title": "Cloud Workstations API",
+      "description": "<UNKNOWN - NO SERVICE CONFIG DOCUMENTATION SUMMARY>",
+      "importDirectories": [
+        "google/api",
+        "google/longrunning",
+        "google/protobuf",
+        "google/rpc"
+      ],
+      "options": {
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/cloud/workstations/v1beta;workstations": 1
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 1
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "com.google.cloud.workstations.v1beta": 1
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "Workstations",
+          "fullName": "google.cloud.workstations.v1beta.Workstations",
+          "methods": [
+            {
+              "shortName": "CreateWorkstation",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.CreateWorkstation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{parent=projects/*/locations/*/workstationClusters/*/workstationConfigs/*}/workstations"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateWorkstationCluster",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.CreateWorkstationCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{parent=projects/*/locations/*}/workstationClusters"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateWorkstationConfig",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.CreateWorkstationConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{parent=projects/*/locations/*/workstationClusters/*}/workstationConfigs"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteWorkstation",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.DeleteWorkstation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1beta/{name=projects/*/locations/*/workstationClusters/*/workstationConfigs/*/workstations/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteWorkstationCluster",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.DeleteWorkstationCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1beta/{name=projects/*/locations/*/workstationClusters/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteWorkstationConfig",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.DeleteWorkstationConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1beta/{name=projects/*/locations/*/workstationClusters/*/workstationConfigs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GenerateAccessToken",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.GenerateAccessToken",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{workstation=projects/*/locations/*/workstationClusters/*/workstationConfigs/*/workstations/*}:generateAccessToken"
+                }
+              ]
+            },
+            {
+              "shortName": "GetWorkstation",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.GetWorkstation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{name=projects/*/locations/*/workstationClusters/*/workstationConfigs/*/workstations/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetWorkstationCluster",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.GetWorkstationCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{name=projects/*/locations/*/workstationClusters/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetWorkstationConfig",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.GetWorkstationConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{name=projects/*/locations/*/workstationClusters/*/workstationConfigs/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "ListUsableWorkstationConfigs",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.ListUsableWorkstationConfigs",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{parent=projects/*/locations/*/workstationClusters/*}/workstationConfigs:listUsable"
+                }
+              ]
+            },
+            {
+              "shortName": "ListUsableWorkstations",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.ListUsableWorkstations",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{parent=projects/*/locations/*/workstationClusters/*/workstationConfigs/*}/workstations:listUsable"
+                }
+              ]
+            },
+            {
+              "shortName": "ListWorkstationClusters",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.ListWorkstationClusters",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{parent=projects/*/locations/*}/workstationClusters"
+                }
+              ]
+            },
+            {
+              "shortName": "ListWorkstationConfigs",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.ListWorkstationConfigs",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{parent=projects/*/locations/*/workstationClusters/*}/workstationConfigs"
+                }
+              ]
+            },
+            {
+              "shortName": "ListWorkstations",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.ListWorkstations",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta/{parent=projects/*/locations/*/workstationClusters/*/workstationConfigs/*}/workstations"
+                }
+              ]
+            },
+            {
+              "shortName": "StartWorkstation",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.StartWorkstation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{name=projects/*/locations/*/workstationClusters/*/workstationConfigs/*/workstations/*}:start"
+                }
+              ]
+            },
+            {
+              "shortName": "StopWorkstation",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.StopWorkstation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1beta/{name=projects/*/locations/*/workstationClusters/*/workstationConfigs/*/workstations/*}:stop"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateWorkstation",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.UpdateWorkstation",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta/{workstation.name=projects/*/locations/*/workstationClusters/*/workstationConfigs/*/workstations/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateWorkstationCluster",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.UpdateWorkstationCluster",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta/{workstation_cluster.name=projects/*/locations/*/workstationClusters/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateWorkstationConfig",
+              "fullName": "google.cloud.workstations.v1beta.Workstations.UpdateWorkstationConfig",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1beta/{workstation_config.name=projects/*/locations/*/workstationClusters/*/workstationConfigs/*}"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "workstations_v1beta.yaml",
+      "serviceConfigApiNames": [
+        "google.cloud.location.Locations",
+        "google.cloud.workstations.v1beta.Workstations",
+        "google.iam.v1.IAMPolicy",
+        "google.longrunning.Operations"
+      ],
+      "nameInServiceConfig": "workstations.googleapis.com"
     },
     {
       "id": "google.container.v1",
@@ -91372,6 +91687,17 @@
           "fullName": "google.pubsub.v1.SchemaService",
           "methods": [
             {
+              "shortName": "CommitSchema",
+              "fullName": "google.pubsub.v1.SchemaService.CommitSchema",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/schemas/*}:commit"
+                }
+              ]
+            },
+            {
               "shortName": "CreateSchema",
               "fullName": "google.pubsub.v1.SchemaService.CreateSchema",
               "mode": "UNARY",
@@ -91394,6 +91720,17 @@
               ]
             },
             {
+              "shortName": "DeleteSchemaRevision",
+              "fullName": "google.pubsub.v1.SchemaService.DeleteSchemaRevision",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/schemas/*}:deleteRevision"
+                }
+              ]
+            },
+            {
               "shortName": "GetSchema",
               "fullName": "google.pubsub.v1.SchemaService.GetSchema",
               "mode": "UNARY",
@@ -91405,6 +91742,17 @@
               ]
             },
             {
+              "shortName": "ListSchemaRevisions",
+              "fullName": "google.pubsub.v1.SchemaService.ListSchemaRevisions",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/schemas/*}:listRevisions"
+                }
+              ]
+            },
+            {
               "shortName": "ListSchemas",
               "fullName": "google.pubsub.v1.SchemaService.ListSchemas",
               "mode": "UNARY",
@@ -91412,6 +91760,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{parent=projects/*}/schemas"
+                }
+              ]
+            },
+            {
+              "shortName": "RollbackSchema",
+              "fullName": "google.pubsub.v1.SchemaService.RollbackSchema",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{name=projects/*/schemas/*}:rollback"
                 }
               ]
             },

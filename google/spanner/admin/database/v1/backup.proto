@@ -117,6 +117,19 @@ message Backup {
   // Output only. The encryption information for the backup.
   EncryptionInfo encryption_info = 8 [(google.api.field_behavior) = OUTPUT_ONLY];
 
+  // Output only. The encryption information for the backup, whether it is
+  // protected by one or more KMS keys. The information includes all Cloud
+  // KMS key versions used to encrypt the backup. The `encryption_status' field
+  // inside of each `EncryptionInfo` is not populated. At least one of the key
+  // versions must be available for the backup to be restored. If a key version
+  // is revoked in the middle of a restore, the restore behavior is undefined.
+  // (-- api-linter: core::0140::abbreviations=disabled
+  //     aip.dev/not-precedent: We need to do this because this replaces an
+  //     existing old field called `encryption_info`. --)
+  repeated EncryptionInfo encryption_information = 13 [
+    (google.api.field_behavior) = OUTPUT_ONLY
+  ];
+
   // Output only. The database dialect information for the backup.
   DatabaseDialect database_dialect = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
 
@@ -569,6 +582,27 @@ message CreateBackupEncryptionConfig {
       type: "cloudkms.googleapis.com/CryptoKey"
     }
   ];
+
+  // Specifies the KMS configuration for the one or more keys used to protect
+  // the backup. Values are of the form
+  // `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
+  //
+  // The keys referenced by kms_key_names must fully cover all
+  // regions of the backup's instance configuration. Some examples:
+  // * For single region instance configs, specify a single regional
+  // location KMS key.
+  // * For multi-regional instance configs of type GOOGLE_MANAGED,
+  // either specify a multi-regional location KMS key or multiple regional
+  // location KMS keys that cover all regions in the instance config.
+  // * For an instance config of type USER_MANAGED, please specify only
+  // regional location KMS keys to cover each region in the instance config.
+  // Multi-regional location KMS keys are not supported for USER_MANAGED
+  // instance configs.
+  repeated string kms_key_names = 3 [
+    (google.api.resource_reference) = {
+      type: "cloudkms.googleapis.com/CryptoKey"
+    }
+  ];
 }
 
 // Encryption configuration for the copied backup.
@@ -601,6 +635,13 @@ message CopyBackupEncryptionConfig {
   // `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
   // `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
   string kms_key_name = 2 [
+    (google.api.field_behavior) = OPTIONAL,
+    (google.api.resource_reference) = {
+      type: "cloudkms.googleapis.com/CryptoKey"
+    }
+  ];
+
+  repeated string kms_key_names = 3 [
     (google.api.field_behavior) = OPTIONAL,
     (google.api.resource_reference) = {
       type: "cloudkms.googleapis.com/CryptoKey"

@@ -60,6 +60,27 @@ message EncryptionConfig {
   string kms_key_name = 2 [(google.api.resource_reference) = {
                              type: "cloudkms.googleapis.com/CryptoKey"
                            }];
+
+  // Specifies the KMS configuration for the one or more keys used to encrypt
+  // the database. Values are of the form
+  // `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
+  //
+  // The keys referenced by kms_key_names must fully cover all
+  // regions of the database instance configuration. Some examples:
+  // * For single region database instance configs, specify a single regional
+  // location KMS key.
+  // * For multi-regional database instance configs of type GOOGLE_MANAGED,
+  // either specify a multi-regional location KMS key or multiple regional
+  // location KMS keys that cover all regions in the instance config.
+  // * For a database instance config of type USER_MANAGED, please specify only
+  // regional location KMS keys to cover each region in the instance config.
+  // Multi-regional location KMS keys are not supported for USER_MANAGED
+  // instance configs.
+  repeated string kms_key_names = 3 [
+    (google.api.resource_reference) = {
+      type: "cloudkms.googleapis.com/CryptoKey"
+    }
+  ];
 }
 
 // Encryption information for a Cloud Spanner database or backup.

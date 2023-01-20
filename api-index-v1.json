@@ -18264,7 +18264,7 @@
       "majorVersion": "v1",
       "hostName": "cloudasset.googleapis.com",
       "title": "Cloud Asset API",
-      "description": "The cloud asset API manages the history and inventory of cloud resources.",
+      "description": "The Cloud Asset API manages the history and inventory of Google Cloud resources.",
       "importDirectories": [
         "google/api",
         "google/cloud/asset/v1",
@@ -18345,6 +18345,39 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1/{resource=*/*}:analyzeMove"
+                }
+              ]
+            },
+            {
+              "shortName": "AnalyzeOrgPolicies",
+              "fullName": "google.cloud.asset.v1.AssetService.AnalyzeOrgPolicies",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{scope=*/*}:analyzeOrgPolicies"
+                }
+              ]
+            },
+            {
+              "shortName": "AnalyzeOrgPolicyGovernedAssets",
+              "fullName": "google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{scope=*/*}:analyzeOrgPolicyGovernedAssets"
+                }
+              ]
+            },
+            {
+              "shortName": "AnalyzeOrgPolicyGovernedContainers",
+              "fullName": "google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedContainers",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{scope=*/*}:analyzeOrgPolicyGovernedContainers"
                 }
               ]
             },
@@ -18552,7 +18585,7 @@
       "majorVersion": "v1",
       "hostName": "cloudasset.googleapis.com",
       "title": "Cloud Asset API",
-      "description": "The cloud asset API manages the history and inventory of cloud resources.",
+      "description": "The Cloud Asset API manages the history and inventory of Google Cloud resources.",
       "importDirectories": [
         "google/api",
         "google/cloud/asset/v1p1beta1",
@@ -18623,7 +18656,8 @@
       ],
       "configFile": "cloudasset_v1p1beta1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.asset.v1p1beta1.AssetService"
+        "google.cloud.asset.v1p1beta1.AssetService",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "cloudasset.googleapis.com"
     },
@@ -18751,7 +18785,7 @@
       "majorVersion": "v1",
       "hostName": "cloudasset.googleapis.com",
       "title": "Cloud Asset API",
-      "description": "The cloud asset API manages the history and inventory of cloud resources.",
+      "description": "The Cloud Asset API manages the history and inventory of Google Cloud resources.",
       "importDirectories": [
         "google/api",
         "google/cloud/asset/v1p5beta1",
@@ -18815,7 +18849,8 @@
       ],
       "configFile": "cloudasset_v1p5beta1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.asset.v1p5beta1.AssetService"
+        "google.cloud.asset.v1p5beta1.AssetService",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "cloudasset.googleapis.com"
     },
@@ -18826,12 +18861,10 @@
       "majorVersion": "v1",
       "hostName": "cloudasset.googleapis.com",
       "title": "Cloud Asset API",
-      "description": "The cloud asset API manages the history and inventory of cloud resources.",
+      "description": "The Cloud Asset API manages the history and inventory of Google Cloud resources.",
       "importDirectories": [
         "google/api",
-        "google/cloud/asset/v1p7beta1",
         "google/cloud/orgpolicy/v1",
-        "google/cloud/osconfig/v1",
         "google/iam/v1",
         "google/identity/accesscontextmanager/v1",
         "google/longrunning",
@@ -18891,7 +18924,8 @@
       ],
       "configFile": "cloudasset_v1p7beta1.yaml",
       "serviceConfigApiNames": [
-        "google.cloud.asset.v1p7beta1.AssetService"
+        "google.cloud.asset.v1p7beta1.AssetService",
+        "google.longrunning.Operations"
       ],
       "nameInServiceConfig": "cloudasset.googleapis.com"
     },
@@ -40123,7 +40157,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/dialogflow/cx/v3;cx": 21
+            "cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb": 21
           }
         },
         "java_multiple_files": {
@@ -42657,7 +42691,7 @@
         },
         "go_package": {
           "valueCounts": {
-            "google.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflow": 23
+            "cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb": 23
           }
         },
         "java_multiple_files": {
@@ -43395,6 +43429,21 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v2/{parent=projects/*/locations/*/conversations/*}/messages"
+                }
+              ]
+            },
+            {
+              "shortName": "SuggestConversationSummary",
+              "fullName": "google.cloud.dialogflow.v2.Conversations.SuggestConversationSummary",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{conversation=projects/*/conversations/*}/suggestions:suggestConversationSummary"
+                },
+                {
+                  "httpMethod": "POST",
+                  "path": "/v2/{conversation=projects/*/locations/*/conversations/*}/suggestions:suggestConversationSummary"
                 }
               ]
             }
@@ -46461,6 +46510,17 @@
               ]
             },
             {
+              "shortName": "GetProcessorType",
+              "fullName": "google.cloud.documentai.v1.DocumentProcessorService.GetProcessorType",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/locations/*/processorTypes/*}"
+                }
+              ]
+            },
+            {
               "shortName": "GetProcessorVersion",
               "fullName": "google.cloud.documentai.v1.DocumentProcessorService.GetProcessorVersion",
               "mode": "UNARY",
@@ -46830,6 +46890,17 @@
                 {
                   "httpMethod": "GET",
                   "path": "/v1beta3/{name=projects/*/locations/*/processors/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetProcessorType",
+              "fullName": "google.cloud.documentai.v1beta3.DocumentProcessorService.GetProcessorType",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1beta3/{name=projects/*/locations/*/processorTypes/*}"
                 }
               ]
             },
@@ -93379,6 +93450,210 @@
         "google.watcher.v1.Watcher"
       ],
       "nameInServiceConfig": "watcher.googleapis.com"
+    },
+    {
+      "id": "grafeas.v1",
+      "directory": "grafeas/v1",
+      "version": "v1",
+      "majorVersion": "v1",
+      "hostName": "containeranalysis.googleapis.com",
+      "title": "Container Analysis API",
+      "description": "An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.",
+      "importDirectories": [
+        "google/api",
+        "google/protobuf",
+        "google/rpc",
+        "grafeas/v1"
+      ],
+      "options": {
+        "go_package": {
+          "valueCounts": {
+            "google.golang.org/genproto/googleapis/grafeas/v1;grafeas": 19
+          }
+        },
+        "java_multiple_files": {
+          "valueCounts": {
+            "true": 19
+          }
+        },
+        "java_package": {
+          "valueCounts": {
+            "io.grafeas.v1": 19
+          }
+        },
+        "objc_class_prefix": {
+          "valueCounts": {
+            "GRA": 19
+          }
+        }
+      },
+      "services": [
+        {
+          "shortName": "Grafeas",
+          "fullName": "grafeas.v1.Grafeas",
+          "methods": [
+            {
+              "shortName": "BatchCreateNotes",
+              "fullName": "grafeas.v1.Grafeas.BatchCreateNotes",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/notes:batchCreate"
+                }
+              ]
+            },
+            {
+              "shortName": "BatchCreateOccurrences",
+              "fullName": "grafeas.v1.Grafeas.BatchCreateOccurrences",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/occurrences:batchCreate"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateNote",
+              "fullName": "grafeas.v1.Grafeas.CreateNote",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/notes"
+                }
+              ]
+            },
+            {
+              "shortName": "CreateOccurrence",
+              "fullName": "grafeas.v1.Grafeas.CreateOccurrence",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "POST",
+                  "path": "/v1/{parent=projects/*}/occurrences"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteNote",
+              "fullName": "grafeas.v1.Grafeas.DeleteNote",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/notes/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "DeleteOccurrence",
+              "fullName": "grafeas.v1.Grafeas.DeleteOccurrence",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "DELETE",
+                  "path": "/v1/{name=projects/*/occurrences/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetNote",
+              "fullName": "grafeas.v1.Grafeas.GetNote",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/notes/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetOccurrence",
+              "fullName": "grafeas.v1.Grafeas.GetOccurrence",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/occurrences/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "GetOccurrenceNote",
+              "fullName": "grafeas.v1.Grafeas.GetOccurrenceNote",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/occurrences/*}/notes"
+                }
+              ]
+            },
+            {
+              "shortName": "ListNoteOccurrences",
+              "fullName": "grafeas.v1.Grafeas.ListNoteOccurrences",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{name=projects/*/notes/*}/occurrences"
+                }
+              ]
+            },
+            {
+              "shortName": "ListNotes",
+              "fullName": "grafeas.v1.Grafeas.ListNotes",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*}/notes"
+                }
+              ]
+            },
+            {
+              "shortName": "ListOccurrences",
+              "fullName": "grafeas.v1.Grafeas.ListOccurrences",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "GET",
+                  "path": "/v1/{parent=projects/*}/occurrences"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateNote",
+              "fullName": "grafeas.v1.Grafeas.UpdateNote",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{name=projects/*/notes/*}"
+                }
+              ]
+            },
+            {
+              "shortName": "UpdateOccurrence",
+              "fullName": "grafeas.v1.Grafeas.UpdateOccurrence",
+              "mode": "UNARY",
+              "bindings": [
+                {
+                  "httpMethod": "PATCH",
+                  "path": "/v1/{name=projects/*/occurrences/*}"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "configFile": "grafeas_v1.yaml",
+      "serviceConfigApiNames": [
+        "grafeas.v1.Grafeas"
+      ],
+      "nameInServiceConfig": "containeranalysis.googleapis.com"
     }
   ],
   "metadata": {

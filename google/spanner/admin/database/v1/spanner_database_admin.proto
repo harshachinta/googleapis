@@ -695,6 +695,9 @@ message GetDatabaseDdlResponse {
   // A list of formatted DDL statements defining the schema of the database
   // specified in the request.
   repeated string statements = 1;
+
+  // Proto descriptors stored in the database.
+  bytes proto_descriptors = 2;
 }
 
 // The request for

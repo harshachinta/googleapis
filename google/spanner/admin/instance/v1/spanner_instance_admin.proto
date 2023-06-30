@@ -560,6 +560,34 @@ message InstanceConfig {
 
   // Output only. The current instance config state.
   State state = 11 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // Indicates the quorum type of this instance configuration.
+  enum QuorumType {
+    // Not specified.
+    QUORUM_TYPE_UNSPECIFIED = 0;
+
+    // An instance configuration tagged with REGION quorum type forms a write
+    // quorum in a single region.
+    REGION = 1;
+
+    // An instance configuration tagged with DUAL_REGION quorum type forms a
+    // write quorums with exactly two read-write regions in a multi-region
+    // configuration.
+    //
+    // This instance configurations requires reconfiguration in the event of
+    // regional failures.
+    DUAL_REGION = 2;
+
+    // An instance configuration tagged with MULTI_REGION quorum type forms a
+    // write quorums from replicas are spread across more than one region in a
+    // multi-region configuration.
+    MULTI_REGION = 3;
+  }
+
+  // The `QuorumType` of the instance configuration.
+  QuorumType quorum_type = 18 [
+    (google.api.field_behavior) = OUTPUT_ONLY
+  ];
 }
 
 // An isolated set of Cloud Spanner resources on which databases can be hosted.

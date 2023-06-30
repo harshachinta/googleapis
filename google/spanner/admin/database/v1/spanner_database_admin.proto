@@ -180,6 +180,34 @@ service DatabaseAdmin {
     option (google.api.method_signature) = "database";
   }
 
+  // Initiates reconfiguration of a database from dual-region mode to
+  // single-region mode and vice versa.
+  //
+  // Reconfigurations are restricted to databases that use dual region instance
+  // configurations.
+  //
+  // The returned [long-running operation][google.longrunning.Operation] will
+  // have a name of the format
+  // `projects/<project>/instances/<instance>/databases/<database>/operations/<operation_id>`
+  // and can be used to track execution of the reconfiguration. The
+  // [metadata][google.longrunning.Operation.metadata] field type is
+  // [ReconfigureDatabaseMetadata][google.spanner.admin.database.v1.ReconfigureDatabaseMetadata].
+  //
+  // Authorization requires `spanner.databases.reconfigure` permission on
+  // the resource [database][ReconfigureDatabaseRequest.database].
+  rpc ReconfigureDatabase(ReconfigureDatabaseRequest)
+    returns (google.longrunning.Operation) {
+    option (google.api.http) = {
+      post: "/v1/{name=projects/*/instances/*/databases/*}:reconfigure"
+      body: "*"
+    };
+    option (google.api.method_signature) = "name,etag";
+    option (google.longrunning.operation_info) = {
+      response_type: "google.spanner.admin.database.v1.Database"
+      metadata_type: "ReconfigureDatabaseMetadata"
+    };
+  }
+
   // Sets the access control policy on a database or backup resource.
   // Replaces any existing policy.
   //
@@ -398,6 +426,67 @@ service DatabaseAdmin {
   }
 }
 
+// Information about the database reconfiguration type.
+message ReconfigurationType {
+  // The type of reconfiguration.
+  oneof type {
+    // Single region reconfiguration type.
+    SingleRegion single_region = 1;
+
+    // Dual region reconfiguration type.
+    DualRegion dual_region = 2;
+  }
+
+  // Message type for a single-region database reconfiguration.
+  message SingleRegion {
+    // The location of the serving region, e.g. "us-central1".
+    // The location must be one of the regions within the dual region instance
+    // configuration of your database. The list of valid locations is available
+    // via [GetInstanceConfig[InstanceAdmin.GetInstanceConfig] API.
+    //
+    // This should only be used if you plan to reconfigure the database
+    // in single-region reconfiguration type.
+    string serving_location = 1 [
+      (google.api.field_behavior) = REQUIRED
+    ];
+  }
+
+  // Message type for a dual-region database reconfiguration. Currently this
+  // reconfiguration type has no options.
+  message DualRegion {
+    // (-- Room left for more options to be added someday. --)
+  }
+}
+
+// Information about the database reconfiguration.
+message ReconfigurationInfo {
+  // The type of this reconfiguration. See [ReconfigurationType][] for more
+  // information about reconfiguration type specifications.
+  ReconfigurationType reconfiguration_type = 1;
+
+  // Describes who initiated reconfiguration.
+  enum Initiator {
+    // Unspecified.
+    INITIATOR_UNSPECIFIED = 0;
+
+    // Reconfiguration initiated by Google.
+    GOOGLE = 1;
+
+    // Reconfiguration initiated by User.
+    USER = 2;
+  }
+  // Whether this reconfiguration is a Google or User initiated reconfiguration.
+  Initiator initiator = 2;
+
+  // The timestamp when the request was triggered.
+  google.protobuf.Timestamp start_time = 3;
+
+  // The etag is used for optimistic concurrency control as a way to help
+  // prevent simultaneous reconfiguration requests that could create a race
+  // condition.
+  string etag = 4;
+}
+
 // Information about the database restore.
 message RestoreInfo {
   // The type of the restore source.
@@ -507,6 +596,13 @@ message Database {
   // Output only. If true, the database is being updated. If false, there are no
   // ongoing update operations for the database.
   bool reconciling = 12 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+
+  // Output only. Applicable only for databases that use dual region instance
+  // configurations. Contains information about the reconfiguration state.
+  ReconfigurationInfo reconfiguration_info = 14 [
+    (google.api.field_behavior) = OUTPUT_ONLY
+  ];
 }
 
 // The request for [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
@@ -731,6 +827,47 @@ message UpdateDatabaseDdlMetadata {
   // The brief action info for the DDL statements.
   // `actions[i]` is the brief info for `statements[i]`.
   repeated DdlStatementActionInfo actions = 6;
+}
+
+// The request for [ReconfigureDatabase][DatabaseAdmin.ReconfigureDatabase].
+message ReconfigureDatabaseRequest {
+  // Required. Name of the database in which to apply the reconfiguration.
+  // Values are of the form
+  // `projects/<project>/instances/<instance>/databases/<database>`.
+  string name = 1 [
+    (google.api.field_behavior) = REQUIRED,
+    (google.api.resource_reference).type = "spanner.googleapis.com/Database"
+  ];
+
+  // The type of this reconfiguration.
+  ReconfigurationType reconfiguration_type = 2 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The etag is the hash of the database resource. The operation will only
+  // performed if the etag matches that of the current database resource.
+  // Otherwise the API will return an `INVALID_ARGUMENT` error.
+  //
+  // The etag is used for optimistic concurrency control as a way to help
+  // prevent simultaneous reconfiguration requests that could create a race
+  // condition.
+  string etag = 3 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+// Metadata type for the long-running operation returned by
+// [ReconfigureDatabase][DatabaseAdmin.ReconfigureDatabase].
+message ReconfigureDatabaseMetadata {
+  // The request for [ReconfigureDatabase][DatabaseAdmin.ReconfigureDatabase].
+  ReconfigureDatabaseRequest request = 1;
+
+  // Time the request was received.
+  google.protobuf.Timestamp start_time = 2;
+
+  // If set, the time at which this operation failed or was completed
+  // successfully.
+  google.protobuf.Timestamp end_time = 3;
 }
 
 // The request for [DropDatabase][google.spanner.admin.database.v1.DatabaseAdmin.DropDatabase].
